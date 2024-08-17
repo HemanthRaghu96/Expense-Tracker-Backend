@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
+const expenseRoutes = require('./routes/expense');
 dotenv.config();
 
 const app = express();
@@ -21,6 +22,8 @@ const connectDB = async () => {
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+
+app.use('/expenses', expenseRoutes);
 
 app.listen(port, () => {
   connectDB();
